@@ -1,0 +1,16 @@
+[
+    {
+        "type": "file",
+        "name": "index",
+        "label": "预览"
+    },
+    "DNS",
+    "1.1.1.1",
+    "box-js",
+    {
+        "type": "dir",
+        "name": "appendix",
+        "label": "📖 附录",
+        "collapsible": false
+    }
+]

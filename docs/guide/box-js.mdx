@@ -1,0 +1,59 @@
+import { ModuleInstall } from "@theme";
+import _Footer from "./_Footer.md";
+
+# 🧰 BoxJs
+
+:::info ℹ️ 用前须知
+`BoxJs`仅用于可视化配置  
+请搭配模块/插件/覆写等使用  
+
+:::
+
+:::info ℹ️ 用前须知
+
+使用`BoxJs`进行配置将被视为专业用户  
+官方不受理因使用`BoxJs`配置导致的各种问题  
+
+:::
+
+## 使用说明
+* [BoxJs官方说明文档](https://chavyleung.gitbook.io/boxjs/)
+
+## BoxJs 安装链接
+<ModuleInstall
+  urlPrefix="https://github.com/chavyleung/scripts/raw/master/box/rewrite/"
+  urls={{
+    loon: "boxjs.rewrite.loon.plugin",
+    surge: "boxjs.rewrite.surge.sgmodule",
+    qx: "boxjs.rewrite.quanx.conf",
+    stash: "boxjs.rewrite.stash.stoverride",
+    shadowrocket: "boxjs.rewrite.surge.sgmodule"
+  }}
+/>
+
+## 订阅链接
+* 方法一: 🆕点击一键订阅(推荐，安装`BoxJs`后点击导入)
+  * 完整版: [☁️ Auraflare](http://boxjs.com/#/sub/add/https://github.com/Auraflare/BoxJs/raw/main/Auraflare.boxjs.json "☁️ Auraflare")
+* 方法二: 复制粘贴导入(传统，安装`BoxJs`后复制导入)
+  * 浏览器访问[BoxJs.com](http://boxjs.com)，在[`订阅`](http://boxjs.com/#/sub)页面点击`+`复制粘贴添加本项目订阅链接
+  * 完整版: [Auraflare.boxjs.json](https://github.com/Auraflare/BoxJs/raw/main/Auraflare.boxjs.json "☁️ Auraflare")
+
+## 清除 BoxJs 中 ☁️ Auraflare 的储存数据
+### 清除全部储存数据
+1. 浏览器访问[BoxJs的`我的`页面](http://boxjs.com/#/my)
+2. **点击**`数据查看器`
+3. 在`数据键（Key）`处**输入**`Cloudflare`后，**点击**`VIEW`按钮
+4. **全选**`数据编辑器`内全部内容，删除后，**点击**`保存`按钮
+5. **刷新**页面，确认数据已清除
+### 清除某个平台或类型的设置或缓存
+1. 浏览器访问[BoxJs的`应用`页面](http://boxjs.com/#/app)
+2. **点击**`☁️ Auraflare`分类展开全部应用
+3. **点击**进入某个你想清除设置的应用
+#### 清除设置
+4. 在应用页面最下方`当前会话`一栏，有名为`@Cloudflare.应用名称.Settings`的数据
+5. **点击**`@Cloudflare.应用名称.Settings`右侧的❌按钮删除设置
+#### 清除缓存
+4. 在应用页面最下方`当前会话`一栏，有名为`@Cloudflare.应用名称.Cache`的数据
+5. **点击**`@Cloudflare.应用名称.Cache`右侧的❌按钮删除设置
+
+<_Footer />
