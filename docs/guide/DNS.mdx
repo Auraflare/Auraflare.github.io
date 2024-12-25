@@ -3,4 +3,141 @@ import _Footer from "./_Footer.md";
 
 # 🇩 (D)DNS
 
+## 简介
+* Cloudflare (D)DNS 管理与更新
+
+## 功能列表
+* 自定义更新特定类型和内容记录
+* 自动更新未指定IP的A记录和AAAA记录
+* 通知 (有，但不是完全有，有来自Cloudflare的错误和信息通知)
+* BoxJs集成
+* 持久化储存(有，但不是完全有，没有做反写功能)
+* 并行处理优化
+* web面板 (暂不开工)
+
+## 配置方法
+* 基础: 无基础用法，该模块必须配置后使用
+* 进阶: 配合`Loon`设置面板或`Surge`参数设置功能进行个性化设置
+  * 提供一定的自定义设置，如内置规则的`分流策略`选择、`国家或地区代码`选择等
+* 高级: 配合`BoxJs`及订阅使用
+  <details>
+  <summary>ℹ️ 用前须知：使用`BoxJs`进行配置将被视为专业用户，官方不受理因使用`BoxJs`配置导致的各种问题</summary>
+
+  1. 安装`BoxJs`插件并更新引用资源或脚本:
+     * 安装方法及下载链接详见: [🧰 BoxJs](./box-js)
+  2. 在`BoxJs`的配置面板中进行个性化设置:
+    1. 浏览器访问[BoxJs.com](http://boxjs.com)
+    2. 在[`应用`](http://boxjs.com/#/app)页面点开` iRingo`折叠
+    3. 在[`🇩 (D)DNS`](http://boxjs.com/#/app/Cloudflare.DNS)根据需要填写您的设置信息
+      * 验证方式: 
+      * API 令牌: 在[我的个人资料的'API 令牌'页面](https://dash.cloudflare.com/profile/api-tokens "API 令牌 | Cloudflare")的`API 令牌`生成，注意生成的令牌要有需管理区域的`DNS编辑`权限(推荐使用预设的`编辑区域 DNS`模版)
+      * API 密钥: 在[我的个人资料的'API 令牌'页面](https://dash.cloudflare.com/profile/api-tokens "API 令牌 | Cloudflare")的`API 密钥`的`Global API Key`获取，注意此密钥默认拥有全部权限，不建议使用此方式
+        * 验证内容: 即`API令牌`内容或`API 密钥`内容，注意`API 密钥`需分两行填写，第一行密钥，第二行邮箱
+        * 区域ID: 在`区域`页面右下角的`API`小节的`区域 ID`，单击复制
+        * 区域名称: 即域名
+        * DNS记录: 一行一个记录，A记录和AAAA记录如果不带内容则自动获取外部IP，如果带内容则以内容为准
+          * 格式范例如下:
+          ```
+          id=记录ID&type=类型&name=名称&content=内容&ttl=TTL&priority=优先级&proxied=是否代理
+          id=12345ABCDE&type=MX&name=mail&content=127.0.0.1&ttl=1&priority=10&proxied=true
+          type=A&name=www&proxied=false
+          type=AAAA&name=ipv6&proxied=false
+          ```
+  </details>
+
+## 图片说明
+### 获取令牌
+|  获取令牌  |
+| :----: |
+| 验证内容  |
+| 即API令牌内容或API 密钥内容 <br/> 注意API 密钥需分两行填写，第一行密钥，第二行邮箱，如**示例2**  |
+|**API 令牌示例(单行)：** <br/> 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T <br/> **API 密钥示例(两行)：** <br/> 1234567893feefc5f0q5000bfo0c38d90bbeb <br/> example@example.com <br/> **用户服务密钥示例(单行)：** <br/> v1.0-e24fd090c02efcfecb4de8f4ff246fd5c75b48946fdf0ce26c59f91d0d90797b-cfa33fe60e8e34073c149323454383fc9005d25c9b4c502c2f063457ef65322eade065975001a0b4b4c591c5e1bd36a6e8f7e2d4fa8a9ec01c64c041e99530c2-07b9efe0acd78c82c8d9c690aacb8656d81c369246d7f996a205fe3c18e9254a|
+|![获取令牌](https://github.com/VirgilClyne/Cloudflare/raw/main/img/Cloudflare%20-%201.How.to.get.API.token.PNG "Cloudflare - 1.How to get API token")|
+
+### 获取区域 ID
+| 获取区域 ID |
+| :----: |
+| 区域ID |
+| 在区域页面右下角的API小节的区域 ID，单击复制 |
+|**示例：**  <br/> 372e67954025e0ba6aaa6d586b9e0b59|
+|![获取区域 ID](https://github.com/VirgilClyne/Cloudflare/raw/main/img/Cloudflare%20-%202.How.to.get.zone.id.JPG "Cloudflare - 2.How to get zone id")|
+
+### DNS记录添加
+| DNS记录添加 |
+| :----: |
+| DNS记录  |
+| **格式：** id=记录ID&type=类型&name=名称&content=内容&ttl=TTL&priority=优先级&proxied=是否代理 <br/> **解读：** type为记录类型，name为解析子域名名称，proxied为是否开启代理（小云朵） <br/> 如果你想要解析的域名为test.luca.xyz，解析的ip为1.2.3.4，那么name就是test，content就是1.2.3.4 <br/> 如果你不知道一些参数的信息，可以只填写记录类型和记录名称以及指定的内容，如**示例2** |
+|**示例1：** <br/> id=12345ABCDE&type=MX&name=mail&content=127.0.0.1&ttl=1&priority=10&proxied=true <br/> **示例2：** <br/> type=A&name=test&content=1.2.3.4&proxied=false|
+|![DNS记录添加](https://github.com/VirgilClyne/Cloudflare/raw/main/img/Cloudflare%20-%203.How.to.fill.in.the.form.JPG "Cloudflare - 3.How to fill in the form")|
+
+## 安装链接
+
+<ModuleInstall urlPrefix="https://github.com/Auraflare/DNS/releases/latest/download/">
+  <ModuleInstall.Tab type="loon">
+    <ModuleInstall.Item
+      url="Cloudflare.DNS.plugin"
+      badge={[
+        {
+          type: "info",
+          text: "脚本",
+          outline: true,
+        },
+      ]}
+    />
+  </ModuleInstall.Tab>
+  <ModuleInstall.Tab type="surge">
+    <ModuleInstall.Item
+      url="Cloudflare.DNS.sgmodule"
+      badge={[
+        {
+          type: "warning",
+          text: "脚本",
+          outline: true,
+        },
+      ]}
+    />
+  </ModuleInstall.Tab>
+  <ModuleInstall.Tab type="stash">
+    <ModuleInstall.Item
+      url="Cloudflare.DNS.stoverride"
+      badge={[
+        {
+          type: "info",
+          text: "脚本",
+          outline: true,
+        },
+      ]}
+    />
+  </ModuleInstall.Tab>
+  <ModuleInstall.Tab type="egern">
+    <ModuleInstall.Item
+      url="Cloudflare.DNS.yaml"
+    />
+  </ModuleInstall.Tab>
+  <ModuleInstall.Tab type="qx">
+  * 方法 1
+    * `任务`仓库（Task Gallery）订阅链接: [Cloudflare.Gallery.json](https://github.com/Auraflare/BoxJs/raw/main/Cloudflare.Gallery.json "☁️ Cloudflare")
+  * 方法 2
+    * 修改配置文件，在`[task_local]`段添加如下内容：
+      ```
+      event-network https://github.com/Auraflare/DNS/releases/latest/download/event.bundle.js, tag=Cloudflare: 🇩 (D)DNS, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cloudflare.png, enabled=true
+      */10 * * * * https://github.com/Auraflare/DNS/releases/latest/download/event.bundle.js, tag=Cloudflare: 🇩 (D)DNS, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cloudflare.png, enabled=true
+      ```
+  </ModuleInstall.Tab>
+  <ModuleInstall.Tab type="shadowrocket">
+    <ModuleInstall.Item
+      url="Cloudflare.DNS.srmodule"
+    />
+  </ModuleInstall.Tab>
+</ModuleInstall>
+
+## 更新日志
+* v2.2.0
+  * 新增外部 IP 服务商选择功能
+  * 默认外部 IP 服务商改为`ipw.cn`
+* v2.1.0
+  * 重构代码，统一格式，优化运行
+
+* v2.0.x
+
 <_Footer />
