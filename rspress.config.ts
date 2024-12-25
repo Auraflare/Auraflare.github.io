@@ -14,7 +14,7 @@ const generateChangelogParams = (items: Omit<ChangelogPluginOptions['items'][num
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  title: 'Auraflare',
+  title: '⛅ Auraflare',
   description: 'Cloudflare® 资源集成解决方案',
   icon: 'https://avatars.githubusercontent.com/u/190900859?s=200&v=4',
   logo: 'https://avatars.githubusercontent.com/u/190900859?s=80&v=4',

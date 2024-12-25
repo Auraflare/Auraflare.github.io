@@ -2,8 +2,8 @@
 pageType: home
 
 hero:
-    icon: 🪐
-    name: ☁️ Auraflare
+    icon: ⛅
+    name: ⛅ Auraflare
     text: |
         Cloudflare® 资源集成解决方案
     # tagline: 开箱即用，原生体验
