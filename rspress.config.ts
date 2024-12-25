@@ -58,14 +58,14 @@ export default defineConfig({
       fetchOnDev: false,
       items: generateChangelogParams([
         {
-          title: '🇩 DNS',
+          title: '🇩 (D)DNS',
           routePath: 'dns',
           repo: 'Auraflare/DNS',
         },
         {
           title: '1️⃣ 1.1.1.1 + WARP',
           routePath: '1.1.1.1',
-          repo: 'BiliUniverse/1.1.1.1',
+          repo: 'Auraflare/1.1.1.1',
         },
       ]),
     }),

@@ -6,12 +6,12 @@
     },
     {
         "text": "更新日志",
-        "link": "/changelog/enhanced",
+        "link": "/changelog/dns",
         "activeMatch": "^/changelog/"
     },
     {
         "text": "论坛",
-        "link": "https://github.com/orgs/BiliUniverse/discussions"
+        "link": "https://github.com/orgs/Auraflare/discussions"
     },
     {
         "type": "custom-link",
