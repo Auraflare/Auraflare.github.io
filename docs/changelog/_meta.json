@@ -1,0 +1,12 @@
+[
+  {
+    "type": "custom-link",
+    "label": "🇩 (D)DNS",
+    "link": "/changelog/dns"
+  },
+  {
+    "type": "custom-link",
+    "label": "1️⃣ 1.1.1.1 + WARP",
+    "link": "/changelog/1.1.1.1"
+  }
+]
